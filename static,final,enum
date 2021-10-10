@@ -1,0 +1,181 @@
+Java static keyword
+The static keyword in Java is used for memory management mainly. We can apply static keyword with variables, methods, blocks and nested classes. The static keyword belongs to the class than an instance of the class.
+
+The static can be:
++ Variable (also known as a class variable)
++ Method (also known as a class method)
++ Block
++ Nested class
++Static in Java
+
+1) Java static variable
+If you declare any variable as static, it is known as a static variable.
+
+The static variable can be used to refer to the common property of all objects (which is not unique for each object), for example, the company name of employees, college name of students, etc.
+The static variable gets memory only once in the class area at the time of class loading.
+Advantages of static variable
+It makes your program memory efficient (i.e., it saves memory).
+Understanding the problem without static variable
+class Student{  
+     int rollno;  
+     String name;  
+     String college="ITS";  
+}  
+Suppose there are 500 students in my college, now all instance data members will get memory each time when the object is created. All students have its unique rollno and name, so instance data member is good in such case. Here, "college" refers to the common property of all objects. If we make it static, this field will get the memory only once.
+Example of static variable
+//Java Program to demonstrate the use of static variable  
+class Student{  
+   int rollno;//instance variable  
+   String name;  
+   static String college ="ITS";//static variable  
+   //constructor  
+   Student(int r, String n){  
+   rollno = r;  
+   name = n;  
+   }  
+   //method to display the values  
+   void display (){System.out.println(rollno+" "+name+" "+college);}  
+}  
+//Test class to show the values of objects  
+public class TestStaticVariable1{  
+ public static void main(String args[]){  
+ Student s1 = new Student(111,"Karan");  
+ Student s2 = new Student(222,"Aryan");  
+ //we can change the college of all objects by the single line of code  
+ //Student.college="BBDIT";  
+ s1.display();  
+ s2.display();  
+ }  
+}  
+Output:
+111 Karan ITS
+222 Aryan ITS
+Program of the counter without static variable
+In this example, we have created an instance variable named count which is incremented in the constructor. Since instance variable gets the memory at the time of object creation, each object will have the copy of the instance variable. If it is incremented, it won't reflect other objects. So each object will have the value 1 in the count variable.
+
+//Java Program to demonstrate the use of an instance variable  
+//which get memory each time when we create an object of the class.  
+class Counter{  
+int count=0;//will get memory each time when the instance is created  
+  
+Counter(){  
+count++;//incrementing value  
+System.out.println(count);  
+}  
+  
+public static void main(String args[]){  
+//Creating objects  
+Counter c1=new Counter();  
+Counter c2=new Counter();  
+Counter c3=new Counter();  
+}  
+}   
+Output:
+
+1
+1
+1 
+ 
+ Program of counter by static variable
+As we have mentioned above, static variable will get the memory only once, if any object changes the value of the static variable, it will retain its value.
+
+//Java Program to illustrate the use of static variable which  
+//is shared with all objects.  
+class Counter2{  
+static int count=0;//will get memory only once and retain its value  
+  
+Counter2(){  
+count++;//incrementing the value of static variable  
+System.out.println(count);  
+}  
+  
+public static void main(String args[]){  
+//creating objects  
+Counter2 c1=new Counter2();  
+Counter2 c2=new Counter2();  
+Counter2 c3=new Counter2();  
+}  
+}  
+ Output:
+
+1
+2
+3
+
+Final Keyword In Java
+The final keyword in java is used to restrict the user. The java final keyword can be used in many context. Final can be:
++variable
++method
++class
+The final keyword can be applied with the variables, a final variable that have no value it is called blank final variable or uninitialized final variable. It can be initialized in the constructor only. The blank final variable can be static also which will be initialized in the static block only. We will have detailed learning of these. Let's first learn the basics of final keyword.
+1) Java final variable
+If you make any variable as final, you cannot change the value of final variable(It will be constant).
+
+Example of final variable
+There is a final variable speedlimit, we are going to change the value of this variable, but It can't be changed because final variable once assigned a value can never be changed.
+2) Java final method
+If you make any method as final, you cannot override it.
+
+Example of final method
+class Bike{  
+  final void run(){System.out.println("running");}  
+}  
+     
+class Honda extends Bike{  
+   void run(){System.out.println("running safely with 100kmph");}  
+     
+   public static void main(String args[]){  
+   Honda honda= new Honda();  
+   honda.run();  
+   }  
+}  
+
+3) Java final class
+If you make any class as final, you cannot extend it.
+
+Example of final class
+final class Bike{}  
+  
+class Honda1 extends Bike{  
+  void run(){System.out.println("running safely with 100kmph");}  
+    
+  public static void main(String args[]){  
+  Honda1 honda= new Honda1();  
+  honda.run();  
+  }  
+}  
+
+Java Enums
+The Enum in Java is a data type which contains a fixed set of constants.
+
+It can be used for days of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, and SATURDAY) , directions (NORTH, SOUTH, EAST, and WEST), season (SPRING, SUMMER, WINTER, and AUTUMN or FALL), colors (RED, YELLOW, BLUE, GREEN, WHITE, and BLACK) etc. According to the Java naming conventions, we should have all constants in capital letters. So, we have enum constants in capital letters.
+
+Java Enums can be thought of as classes which have a fixed set of constants (a variable that does not change). The Java enum constants are static and final implicitly. It is available since JDK 1.5.
+
+Enums are used to create our own data type like classes. The enum data type (also known as Enumerated Data Type) is used to define an enum in Java. Unlike C/C++, enum in Java is more powerful. Here, we can define an enum either inside the class or outside the class.
+
+Java Enum internally inherits the Enum class, so it cannot inherit any other class, but it can implement many interfaces. We can have fields, constructors, methods, and main methods in Java enum.
+
+Points to remember for Java Enum
+Enum improves type safety
+Enum can be easily used in switch
+Enum can be traversed
+Enum can have fields, constructors and methods
+Enum may implement many interfaces but cannot extend any class because it internally extends Enum class
+
+Simple Example of Java Enum
+class EnumExample1{  
+//defining the enum inside the class  
+public enum Season { WINTER, SPRING, SUMMER, FALL }  
+//main method  
+public static void main(String[] args) {  
+//traversing the enum  
+for (Season s : Season.values())  
+System.out.println(s);  
+}}  
+Output:
+
+WINTER
+SPRING
+SUMMER
+FALL
